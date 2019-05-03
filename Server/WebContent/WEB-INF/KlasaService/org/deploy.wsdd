@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from KlasaService WSDL service -->
+
+  <service name="Klasa" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://org"/>
+      <parameter name="wsdlServiceElement" value="KlasaService"/>
+      <parameter name="schemaQualified" value="http://org"/>
+      <parameter name="wsdlServicePort" value="Klasa"/>
+      <parameter name="className" value="org.Klasa"/>
+      <parameter name="wsdlPortType" value="Klasa"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://org" xmlns:retNS="http://org" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="image" qname="operNS:image" returnQName="retNS:imageReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://org" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:base64String" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://org" xmlns:retNS="http://org" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getAllFilles" qname="operNS:getAllFilles" returnQName="retNS:getAllFillesReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://org" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:n" type="tns:int"/>
+      </operation>
+      <operation xmlns:operNS="http://org" xmlns:retNS="http://org" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="decodeToImage" qname="operNS:decodeToImage" returnQName="retNS:decodeToImageReturn" returnType="rtns:anyType" soapAction="">
+        <parameter xmlns:pns="http://org" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:imageString" type="tns:string"/>
+      </operation>
+      <parameter name="allowedMethods" value="image getAllFilles decodeToImage"/>
+
+  </service>
+</deployment>

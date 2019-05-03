@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://org" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://org" xmlns:intf="http://org" xmlns:tns1="http://image.awt.java" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://org" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://image.awt.java"/>
+   <element name="image">
+    <complexType>
+     <sequence>
+      <element name="base64String" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="imageResponse">
+    <complexType>
+     <sequence>
+      <element name="imageReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getAllFilles">
+    <complexType>
+     <sequence>
+      <element name="n" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getAllFillesResponse">
+    <complexType>
+     <sequence>
+      <element name="getAllFillesReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="decodeToImage">
+    <complexType>
+     <sequence>
+      <element name="imageString" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="decodeToImageResponse">
+    <complexType>
+     <sequence>
+      <element name="decodeToImageReturn" type="xsd:anyType"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="imageRequest">
+
+      <wsdl:part element="impl:image" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAllFillesRequest">
+
+      <wsdl:part element="impl:getAllFilles" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="decodeToImageResponse">
+
+      <wsdl:part element="impl:decodeToImageResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="imageResponse">
+
+      <wsdl:part element="impl:imageResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="decodeToImageRequest">
+
+      <wsdl:part element="impl:decodeToImage" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAllFillesResponse">
+
+      <wsdl:part element="impl:getAllFillesResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="Klasa">
+
+      <wsdl:operation name="image">
+
+         <wsdl:input message="impl:imageRequest" name="imageRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:imageResponse" name="imageResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAllFilles">
+
+         <wsdl:input message="impl:getAllFillesRequest" name="getAllFillesRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getAllFillesResponse" name="getAllFillesResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="decodeToImage">
+
+         <wsdl:input message="impl:decodeToImageRequest" name="decodeToImageRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:decodeToImageResponse" name="decodeToImageResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="KlasaSoapBinding" type="impl:Klasa">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="image">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="imageRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="imageResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAllFilles">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAllFillesRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAllFillesResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="decodeToImage">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="decodeToImageRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="decodeToImageResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="KlasaService">
+
+      <wsdl:port binding="impl:KlasaSoapBinding" name="Klasa">
+
+         <wsdlsoap:address location="http://localhost:8080/Server/services/Klasa"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

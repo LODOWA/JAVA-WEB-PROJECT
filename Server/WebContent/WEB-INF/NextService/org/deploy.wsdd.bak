@@ -1,0 +1,89 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from NextService WSDL service -->
+
+  <service name="Next" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://org"/>
+      <parameter name="wsdlServiceElement" value="NextService"/>
+      <parameter name="schemaQualified" value="http://org"/>
+      <parameter name="wsdlServicePort" value="Next"/>
+      <parameter name="className" value="org.NextSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="Next"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="getNext" qname="operNS:getNext" xmlns:operNS="http://org" returnQName="retNS:getNextReturn" xmlns:retNS="http://org" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:actually" xmlns:pns="http://org" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="countFiles" qname="operNS:countFiles" xmlns:operNS="http://org" returnQName="retNS:countFilesReturn" xmlns:retNS="http://org" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      </operation>
+      <operation name="getPrev" qname="operNS:getPrev" xmlns:operNS="http://org" returnQName="retNS:getPrevReturn" xmlns:retNS="http://org" returnType="rtns:ArrayOf_xsd_anyType" xmlns:rtns="http://org" returnItemQName="tns:item" xmlns:tns="http://org" soapAction="" >
+        <parameter qname="pns:actually" xmlns:pns="http://org" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="getNext getPrev countFiles"/>
+
+      <typeMapping
+        xmlns:ns="http://org"
+        qname="ns:>getNext"
+        type="java:org.GetNext"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://org"
+        qname="ns:>getPrevResponse"
+        type="java:org.GetPrevResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://org"
+        qname="ns:>getPrev"
+        type="java:org.GetPrev"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://org"
+        qname="ns:>getNextResponse"
+        type="java:org.GetNextResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <arrayMapping
+        xmlns:ns="http://org"
+        qname="ns:ArrayOf_xsd_anyType"
+        type="java:java.lang.Object[]"
+        innerType="cmp-ns:anyType" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://org"
+        qname="ns:>countFilesResponse"
+        type="java:org.CountFilesResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://org"
+        qname="ns:>countFiles"
+        type="java:org.CountFiles"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>

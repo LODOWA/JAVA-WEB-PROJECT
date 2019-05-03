@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from NextService WSDL service -->
+
+  <service name="Next" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://org"/>
+      <parameter name="wsdlServiceElement" value="NextService"/>
+      <parameter name="schemaQualified" value="http://org"/>
+      <parameter name="wsdlServicePort" value="Next"/>
+      <parameter name="className" value="org.Next"/>
+      <parameter name="wsdlPortType" value="Next"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://org" xmlns:retNS="http://org" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getNext" qname="operNS:getNext" returnQName="retNS:getNextReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://org" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:actually" type="tns:int"/>
+      </operation>
+      <operation xmlns:operNS="http://org" xmlns:retNS="http://org" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="countFiles" qname="operNS:countFiles" returnQName="retNS:countFilesReturn" returnType="rtns:int" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://org" xmlns:retNS="http://org" xmlns:rtns="http://org" xmlns:tns="http://org" name="getPrev" qname="operNS:getPrev" returnQName="retNS:getPrevReturn" returnType="rtns:ArrayOf_xsd_anyType" returnItemQName="tns:item" soapAction="">
+        <parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" xmlns:pns="http://org" qname="pns:actually" type="tns:int"/>
+      </operation>
+      <parameter name="allowedMethods" value="getNext getPrev countFiles"/>
+
+      <typeMapping xmlns:ns="http://org" qname="ns:&gt;getNext" type="java:org.GetNext" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://org" qname="ns:&gt;getPrevResponse" type="java:org.GetPrevResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://org" qname="ns:&gt;getPrev" type="java:org.GetPrev" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://org" qname="ns:&gt;getNextResponse" type="java:org.GetNextResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <arrayMapping xmlns:ns="http://org" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema" qname="ns:ArrayOf_xsd_anyType" type="java:java.lang.Object[]" innerType="cmp-ns:anyType" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://org" qname="ns:&gt;countFilesResponse" type="java:org.CountFilesResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://org" qname="ns:&gt;countFiles" type="java:org.CountFiles" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>
